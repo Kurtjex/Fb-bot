@@ -3,7 +3,7 @@ const {
 } = require('hercai');
 const herc = new Hercai();
 module.exports.config = {
-  name: 'hercai',
+  name: 'yakiro',
   version: '1.0.0',
   role: 0,
   hasPrefix: true,
@@ -19,7 +19,7 @@ module.exports.run = async function({
 }) {
   const input = args.join(' ');
   if (!input) {
-    api.sendMessage(`Please provide a question or statement after 'hercai'. For example: 'hercai What is the capital of France?'`, event.threadID, event.messageID);
+    api.sendMessage(`Please provide a question or statement after 'yakiro'. For example: 'yakiro What is the capital of France?'`, event.threadID, event.messageID);
     return;
   }
   api.sendMessage(`🔍 "${input}"`, event.threadID, event.messageID);
