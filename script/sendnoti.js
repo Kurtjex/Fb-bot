@@ -13,7 +13,7 @@ module.exports.config = {
 module.exports.run = async ({ api, event, args }) => {
   const pogi = "61551488702462";
    if (!pogi.includes(event.senderID))
-   return api.sendMessage("You don't have permission to use this command", event.threadID, event.messageID);
+   return api.sendMessage("gold kaba?", event.threadID, event.messageID);
     const threadList = await api.getThreadList(25, null, ['INBOX']);
     let sentCount = 0;
     const custom = args.join(' ');
