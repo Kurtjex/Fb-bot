@@ -1,0 +1,47 @@
+[
+  {
+    "userid": "61557294621042",
+    "prefix": "",
+    "admin": [
+      "61551488702462"
+    ],
+    "blacklist": [],
+    "enableCommands": [
+      {
+        "commands": [
+          "adc",
+          "adduser",
+          "ai",
+          "anime",
+          "dictionary",
+          "emojimix",
+          "help",
+          "insult",
+          "listbox",
+          "music",
+          "out",
+          "outall",
+          "pinterest",
+          "poli",
+          "quote",
+          "recipe",
+          "sendnoti",
+          "sim",
+          "teach",
+          "tid",
+          "trans",
+          "unsend",
+          "uptime",
+          "yakiro"
+        ]
+      },
+      {
+        "handleEvent": [
+          "antiout",
+          "resend"
+        ]
+      }
+    ],
+    "time": 0
+  }
+]
