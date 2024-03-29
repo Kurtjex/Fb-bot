@@ -1,62 +1,43 @@
-module.exports.config = {
-  name: "autoacceptfriend",
-  version: "1.0.0",
-  hasPermission: 3,
-  credits: "Cliff",
-  description: "Automatically accept friend requests",
-  commandCategory: "system",
-  usages: "[on/off]",
-  cooldowns: 5,
-  dependencies: {
-    "fs-extra": "",
-    "axios": "",
-    "node-cron": ""
-  }
-};
+const moment = require("moment-timezone");
 
-module.exports.languages = {
-  "vi": {
-    "on": "Bật tự động chấp nhận lời mời kết bạn",
-    "off": "Tắt tự động chấp nhận lời mời kết bạn"
+let autoAccept = false;
+
+module.exports = {
+  config: {
+    name: "accept",
+    aliases: ["accept"],
+    version: "1.0",
+    author: "Jm Labaco",
+    countDown: 5,
+    role: 0,
+    shortDescription: {
+      en: "Make friends via Facebook Account."
+    },
+    longDescription: {
+      en: "Make friends via Facebook Account."
+    },
+    category: "admin",
+    guide: {
+      en: "{p}accept "
+    }
   },
-  "en": {
-    "on": "Enable auto accept friend request",
-    "off": "Disable auto accept friend request"
-  }
-};
-
-module.exports.run = async function({ api, event, args, Users, Threads, Currencies, utils, adminBot, client }) {
-  const { threadID, messageID, senderID } = event;
-  const { writeFileSync, existsSync, readFileSync } = global.nodemodule["fs-extra"];
-  const pathData = __dirname + "/cache/autoAcceptFriend.json";
-  let data = {};
-  const cron = global.nodemodule["node-cron"];
-
-  if (existsSync(pathData)) {
-    data = JSON.parse(readFileSync(pathData));
-  }
-
-  switch (args[0]) {
-    case "on": {
-      data[senderID] = true;
-      writeFileSync(pathData, JSON.stringify(data, null, 4));
-      cron.schedule('0 */5 * * * *', async () => {
-        if (!data[senderID]) return;
-        const listRequests = await api.getFriendRequests();
-        for (const request of listRequests) {
-          await api.addFriend(request.userID);
-          await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds between accepting requests
+  onStart: async function ({ api, event, args }) {
+    try {
+      if (args.length >= 1) {
+        if (args[0].toLowerCase() === "on") {
+          autoAccept = true;
+          return api.sendMessage("Auto-accept is now turned on.", event.threadID);
+        } else if (args[0].toLowerCase() === "off") {
+          autoAccept = false;
+          return api.sendMessage("Auto-accept is now turned off.", event.threadID);
         }
-      });
-      return api.sendMessage("Enabled auto accept friend request.", threadID, messageID);
-    }
-    case "off": {
-      delete data[senderID];
-      writeFileSync(pathData, JSON.stringify(data, null, 4));
-      return api.sendMessage("Disabled auto accept friend request.", threadID, messageID);
-    }
-    default: {
-      return utils.throwError(this.config.name, threadID, messageID);
-    }
-  }
-};
+      }
+
+      if (autoAccept) {
+        const form = {
+          av: api.getCurrentUserID(),
+          fb_api_req_friendly_name: "FriendingCometFriendRequestsRootQueryRelayPreloader",
+          fb_api_caller_class: "RelayModern",
+          doc_id: "4499164963466303",
+          variables: JSON.stringify({ input: { scale: 3 } })
+        };
