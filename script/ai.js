@@ -20,7 +20,7 @@ module.exports.run = async function({
     api.sendMessage(`Please provide a question first!.`, event.threadID, event.messageID);
     return;
   }
-  api.sendMessage(`🤤 "${input}"🤤`, event.threadID, event.messageID);
+  api.sendMessage(`𝘼𝙣𝙨𝙬𝙚𝙧𝙞𝙣𝙜..."${input}"`, event.threadID, event.messageID);
   try {
     const {
       data
