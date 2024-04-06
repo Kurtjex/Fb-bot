@@ -8,16 +8,16 @@ let badWordsActive = {};
 module.exports.config = {
   name: "badwords",
   version: "1.0.0",
-  hasPermission: 1,
-  credits: "Jonell Magallanes",
-  description: "Manage and enforce banned words",
-  usePrefix: true,
-  commandCategory: "admin",
-  usages: "add [word] | remove [word] | list | on | off",
+  role: 1,
+  hasPrefix: false, 
+  aliases: ['bad', 'badwords'],  
+  description: "Manage and enforce banned words", 
+  usages: "add [word] |remove [word] | list | on | off",
+  credits: "Jonell Magallanes | kurt",
   cooldowns: 5,
 };
 
-module.exports.handleEvent = async function({ api, event }) {
+module.exports.run = async function({ api, event }) {
   const { threadID, messageID, senderID } = event;
 
   const loadWords = () => {
