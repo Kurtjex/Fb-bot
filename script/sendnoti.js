@@ -1,7 +1,7 @@
 module.exports.config = {
     name: "sendnoti",
     version: "1.0.0",
-    hasPermssion: 2,
+    hasPermssion: 1,
     credits: "Yan Maglinte",
     description: "Sends a message to all groups and can only be done by the admin.",
     usePrefix: true,
@@ -11,9 +11,6 @@ module.exports.config = {
 };
 
 module.exports.run = async ({ api, event, args }) => {
-  const pogi = "61551488702462";
-   if (!pogi.includes(event.senderID))
-   return api.sendMessage("gold kaba?", event.threadID, event.messageID);
     const threadList = await api.getThreadList(25, null, ['INBOX']);
     let sentCount = 0;
     const custom = args.join(' ');

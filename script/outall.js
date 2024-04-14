@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "outall",
   version: "1.0.0",
-  hasPermssion: 3,
+  hasPermssion: 1,
   credits: "HungCho",
   description: "Outall thread",
   commandCategory: "Admin",

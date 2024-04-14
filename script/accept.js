@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "acp",
   version: "1.0.1",
-  role: 2,
+  role: 1,
   hasPrefix: true,
   aliases: ["accept"],
   description: "Accept/Decline Incoming Bot Friend Requests",
