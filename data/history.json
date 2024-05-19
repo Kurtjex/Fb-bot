@@ -43,5 +43,137 @@
       }
     ],
     "time": 0
+  },
+  {
+    "userid": "61559612099016",
+    "prefix": "",
+    "admin": [
+      "61557012154677"
+    ],
+    "blacklist": [],
+    "enableCommands": [
+      {
+        "commands": [
+          "4chan",
+          "active-session",
+          "adc",
+          "adduser",
+          "ai",
+          "anime",
+          "antiadmin",
+          "autobot",
+          "autoseen",
+          "besh",
+          "bio",
+          "dictionary",
+          "emojimix",
+          "Exercises",
+          "fbdl",
+          "font",
+          "help",
+          "insult",
+          "listbox",
+          "listfriend",
+          "luffy",
+          "meta3",
+          "mistral",
+          "music",
+          "out",
+          "outall",
+          "pinterest",
+          "poli",
+          "quote",
+          "recipe",
+          "restart",
+          "sendnoti",
+          "sim",
+          "system",
+          "teach",
+          "tempmail",
+          "tid",
+          "token",
+          "trans",
+          "uid",
+          "unsend",
+          "uptime",
+          "yakiro",
+          "zoro"
+        ]
+      },
+      {
+        "handleEvent": [
+          "antiout",
+          "resend"
+        ]
+      }
+    ],
+    "time": 865
+  },
+  {
+    "userid": "61557778703470",
+    "prefix": "",
+    "admin": [
+      "61557012154677"
+    ],
+    "blacklist": [],
+    "enableCommands": [
+      {
+        "commands": [
+          "4chan",
+          "acp",
+          "active-session",
+          "adc",
+          "adduser",
+          "ai",
+          "anime",
+          "antiadmin",
+          "autobot",
+          "autoseen",
+          "besh",
+          "bio",
+          "dictionary",
+          "emojimix",
+          "Exercises",
+          "fbdl",
+          "font",
+          "help",
+          "insult",
+          "listbox",
+          "listfriend",
+          "luffy",
+          "meta3",
+          "mistral",
+          "music",
+          "out",
+          "outall",
+          "pinterest",
+          "poli",
+          "quote",
+          "recipe",
+          "restart",
+          "sendnoti",
+          "sim",
+          "system",
+          "teach",
+          "tempmail",
+          "tid",
+          "token",
+          "trans",
+          "uid",
+          "unsend",
+          "uptime",
+          "yakiro",
+          "zoro"
+        ]
+      },
+      {
+        "handleEvent": [
+          "antiout",
+          "joinNoti",
+          "resend"
+        ]
+      }
+    ],
+    "time": 0
   }
 ]
