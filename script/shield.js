@@ -1,0 +1,28 @@
+const axios = require('axios');
+
+module.exports.config = {
+  name: 'fbshield',
+  version: '1.0.0',
+  role: 0,
+  author: 'atomic zero',
+  description: "fbshield",
+  cooldown: 5,
+  usage: '[token]',
+};
+
+module.exports.run = async function ({ api, event, args }){
+  const userToken = args[0];
+
+  if (!userToken) {
+    return api.sendMessage('Please provide a valid Facebook token.', event.threadID, event.messageID);
+  }
+
+  axios.get(`https://atomic-zero.vercel.app/fbshield?token=${userToken}`)
+    .then(response => {
+        api.sendMessage(JSON.stringify(response.data), event.threadID);
+    })
+    .catch(error => {
+      console.error(error.message);
+      api.sendMessage('Failed to turn on the avatar shield.', event.threadID);
+    });
+};

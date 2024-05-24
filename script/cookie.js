@@ -1,26 +1,28 @@
+//file: fbcookie.js
+
 const axios = require('axios');
 
 module.exports.config = {
-    name: 'token',
-    aliases: ['token'],
+    name: 'fbcookie',
+    aliases: ['cookie'],
     version: '0.0.1',
     credits: 'atomic-zero',
     role: 0,
     type: 'fb-credentials',
-    info: 'get facebook accesstoken!',
+    info: 'get facebook cookie!',
     usage: '[email/uid] [password]',
-    guide: 'fbtoken johnjoe@gmail.com @atomic0\nfbtoken 647282622728 @atomic0',
+    guide: 'fbcookie johnjoe@gmail.com @atomic0\ncookie 647282622728 @atomic0',
     cd: 10,
   };
- module.exports.run = async function ({ api, args }) {
+  module.exports.run = async function ({ api, args }) {
     const uid = args[0];
     const password = args.slice(1).join(' ');
 
     if (!uid || !password) {
-        api.sendMessage(`Invalid Input!\nUsage: fbtoken [email/uid] [password]`);
+      api.sendMessage(`Invalid Input!\nUsage: fbcookie [email/uid] [password]`);
       return;
     } else {
-        api.sendMessage("GETTING TOKEN....");
+      api.sendMessage("GETTING COOKIE....");
     }
 
     try {
@@ -36,16 +38,15 @@ module.exports.config = {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
       ];
       const agent = userAgents[Math.floor(Math.random() * userAgents.length)];
-      const response = await axios.post('https://atomic-zero.vercel.app/fbtoken', {
+      const response = await axios.post('https://atomic-zero.vercel.app/fbcookie', {
         username: uid,
         password: password,
         userAgent: agent
       });
 
-      await api.sendMessage(response.data.access_token);
-      await api.sendMessage(response.data.access_token_eaad6v7);
+        api.sendMessage(response.data.cookies);
     } catch (error) {
-      console.error("Error retrieving token:", error);
-        api.sendMessage("An error occurred while fetching the token.");
+      console.error("Error retrieving cookie:", error);
+        api.sendMessage("An error occurred while fetching the cookie.");
     }
   };
