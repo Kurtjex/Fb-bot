@@ -1,33 +1,39 @@
-const axios = require('axios');
+const { Hercai } = require('hercai');
+const herc = new Hercai();
+
 module.exports.config = {
   name: 'ai',
-  version: '1.0.0',
-  role: 0,
+  version: '1.1.0',
+  hasPermssion: 0,
+  credits: 'Yan Maglinte | Liane Cagara',
+  description: 'An AI command using Hercai API!',
   hasPrefix: false,
-  aliases: ['gpt', 'openai'],
-  description: "An AI command powered by GPT-4",
-  usage: "Ai [promot]",
-  credits: 'Developer',
-  cooldown: 3,
+  allowPrefix: true,
+  commandCategory: 'chatbots',
+  usages: 'Ai [prompt]',
+  cooldowns: 5,
 };
-module.exports.run = async function({
-  api,
-  event,
-  args
-}) {
-  const input = args.join(' ');
-  if (!input) {
-    api.sendMessage(`Please provide a question.`, event.threadID, event.messageID);
-    return;
+
+module.exports.run = async function ({ api, event, args, box }) {
+  const prompt = args.join(' ');
+  if (!box) {
+    return api.sendMessage(`Unsupported.`, event.threadID);
   }
-  api.sendMessage(`𝘼𝙣𝙨𝙬𝙚𝙧𝙞𝙣𝙜..."${input}"`, event.threadID, event.messageID);
+
   try {
-    const {
-      data
-    } = await axios.get(`https://openaikey-x20f.onrender.com/api?prompt=${encodeURIComponent(input)}`);
-    const response = data.response;
-    api.sendMessage(response, event.threadID, event.messageID);
+    // Available Models: "v3", "v3-32k", "turbo", "turbo-16k", "gemini"
+    if (!prompt) {
+      box.reply('Please specify a message!');
+      box.react('❓');
+    } else {
+      const info = await box.reply(`Fetching answer...`);
+      box.react('⏱️');
+      const response = await herc.question({ model: 'v3', content: prompt });
+      await box.edit(response.reply, info.messageID);
+      box.react('');
+    }
   } catch (error) {
-    api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
+    box.reply('⚠️ Something went wrong: ' + error);
+    box.react('⚠️');
   }
 };
