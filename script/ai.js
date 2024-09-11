@@ -22,9 +22,9 @@ module.exports.run = async function ({ api, event, args }) {
         }
 
         if (!prompt) {
-            return api.sendMessage('𝖸𝖤𝖲?, 𝖨𝖬 𝖠𝖫𝖨𝖵𝖤 𝖪𝖨𝖭𝖣𝖫𝖸 𝖯𝖱𝖮𝖵𝖨𝖣𝖤 𝖸𝖮𝖴𝖱 𝖰𝖴𝖤𝖲𝖳𝖨𝖮𝖭(⁠≧⁠▽⁠≦⁠)/𝗇𝖤𝖷𝖠𝖬𝖯𝖫𝖤: 𝖠𝖨 𝖠𝖪𝖮 𝖯𝖠𝖣𝖨𝖭 𝖡𝖠', event.threadID, messageID);
+            return api.sendMessage('𝖸𝖤𝖲?, What is your question?', event.threadID, messageID);
         }
-        api.sendMessage('🕙| 𝘈𝘯𝘴𝘸𝘦𝘳𝘪𝘯𝘨 𝘺𝘰𝘶𝘳 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯 `${prompt}` 𝘸𝘢𝘪𝘵 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥...', event.threadID);
+        api.sendMessage('🕘| W𝘢𝘪𝘵 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥...', event.threadID);
 
         // Delay
         await new Promise(resolve => setTimeout(resolve, 2000)); // Adjust the delay time as needed
@@ -37,7 +37,7 @@ module.exports.run = async function ({ api, event, args }) {
             const generatedText = response.data.response;
 
             // Ai Answer Here
-            api.sendMessage(`➪𝖠𝖨 𝖠𝖲𝖲𝖨𝖲𝖳𝖠𝖭𝖳 𝖠𝖭𝖲𝖶𝖤𝖱𝖤𝖣✅\n━━━━━━━━━━━━━━━━\n🚦𝖠𝖭𝖲𝖶𝖤𝖱𝖤𝖣:➪${generatedText}\n━━━━━━━━━━━━━━━━`, event.threadID, messageID);
+            api.sendMessage(`✅ | Answers\n━━━━━━━━━━━━━━━━\n➪ ${generatedText}\n━━━━━━━━━━━━━━━━`, event.threadID, messageID);
         } else {
             console.error('API response did not contain expected data:', response.data);
             api.sendMessage(`❌ An error occurred while generating the text response. Please try again later. Response data: ${JSON.stringify(response.data)}`, event.threadID, messageID);
