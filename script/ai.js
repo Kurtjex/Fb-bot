@@ -18,6 +18,7 @@ module.exports.run = async function ({ api, event, args }) {
 						await api.sendMessage("Hey I'm your virtual assistant, ask me a question.", event.threadID);
 						return;
 				}
+			api.sendMessage"wait..."
 
 				const response = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
 				const answer = response.data.answer;
