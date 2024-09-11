@@ -24,7 +24,7 @@ module.exports.run = async function ({ api, message, event, args }) {
         if (!prompt) {
             return api.sendMessage('𝖸𝖤𝖲?, What is your question?', event.threadID, messageID);
         }
-        message.reply('🕘 | W𝘢𝘪𝘵 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥...', event.threadID);
+        message.send('🕘 | W𝘢𝘪𝘵 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥...', event.threadID);
 
         // Delay
         await new Promise(resolve => setTimeout(resolve, 2000)); // Adjust the delay time as needed
